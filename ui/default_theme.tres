@@ -1,5 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://cowb1u30efo1t"]
 
+[ext_resource type="FontFile" uid="uid://dmnhmxs71iuub" path="res://asset/GomePixel-ARJd7.otf" id="1_vos2p"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xxrg"]
 content_margin_left = 5.0
 content_margin_top = 5.0
@@ -18,3 +20,4 @@ corner_radius_bottom_left = 3
 
 [resource]
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_4xxrg")
+RichTextLabel/fonts/normal_font = ExtResource("1_vos2p")

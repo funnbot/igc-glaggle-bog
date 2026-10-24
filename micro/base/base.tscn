@@ -1,23 +1,31 @@
 [gd_scene format=3 uid="uid://co03w2isympbo"]
 
-[ext_resource type="Script" uid="uid://sh24ro0pplf8" path="res://micro/base/game.gd" id="1_qecsx"]
+[ext_resource type="Theme" uid="uid://cowb1u30efo1t" path="res://ui/default_theme.tres" id="1_63xwn"]
+[ext_resource type="Script" uid="uid://sh24ro0pplf8" path="res://micro/base/base.gd" id="1_qecsx"]
+[ext_resource type="Script" uid="uid://r7pnps0behei" path="res://micro/base/timer.gd" id="2_yr23y"]
+[ext_resource type="Texture2D" uid="uid://dctx6dn2nswpr" path="res://micro/b891001647165f06bfb4a3274b57a288.png" id="4_gx1d4"]
+[ext_resource type="Script" uid="uid://dsu0ll04plx10" path="res://micro/base/rich_text_label.gd" id="4_mmytb"]
+[ext_resource type="Texture2D" uid="uid://wn1386vu7g7m" path="res://micro/base/Sprites.png" id="5_0umcb"]
+[ext_resource type="Script" uid="uid://binl4cojbs3r2" path="res://micro/base/thing.gd" id="5_omje4"]
+[ext_resource type="Script" uid="uid://bl7g05uruqr1f" path="res://micro/base/animated_sprite_2d.gd" id="6_mgcg4"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x0xm2"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_n54jg"]
-size = Vector2(50, 50)
 
 [node name="Node2D" type="Node2D" unique_id=1623321810]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=231111736]
+layer = 2
 
 [node name="Timer" type="PanelContainer" parent="HUD" unique_id=385965835]
 offset_right = 450.0
 offset_bottom = 47.0
+theme = ExtResource("1_63xwn")
+script = ExtResource("2_yr23y")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/Timer" unique_id=295555658]
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
+mouse_filter = 2
 value = 45.0
 nine_patch_stretch = true
 texture_progress = SubResource("PlaceholderTexture2D_x0xm2")
@@ -31,10 +39,49 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_63xwn")
 
 [node name="Game" type="Node2D" parent="." unique_id=548023953]
 script = ExtResource("1_qecsx")
 
 [node name="Thing" type="Sprite2D" parent="Game" unique_id=441679280]
-position = Vector2(576, 298)
-texture = SubResource("PlaceholderTexture2D_n54jg")
+position = Vector2(581, 298)
+scale = Vector2(0.0738468, 0.0738468)
+texture = ExtResource("4_gx1d4")
+script = ExtResource("5_omje4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Game" unique_id=1611876996]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Game/CanvasLayer" unique_id=1266931118]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -181.0
+offset_right = 57.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_63xwn")
+theme_override_font_sizes/normal_font_size = 30
+text = "Press A!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("4_mmytb")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="Game/CanvasLayer" unique_id=210605694]
+texture_filter = 1
+position = Vector2(582.00006, 300)
+scale = Vector2(6.802083, 6.802083)
+texture = ExtResource("5_0umcb")
+hframes = 8
+script = ExtResource("6_mgcg4")
+animation_length = 0.7
+
+[connection signal="complete" from="Game" to="Game/CanvasLayer/RichTextLabel" method="_on_complete"]
+[connection signal="lose" from="Game" to="Game/Thing" method="_on_trigger"]
+[connection signal="lose" from="Game" to="Game/CanvasLayer/AnimatedSprite2D" method="_on_trigger"]
+[connection signal="update_timer" from="Game" to="HUD/Timer" method="update_timer"]

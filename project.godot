@@ -20,9 +20,15 @@ config/icon="res://icon.svg"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/movie_file="/Users/db/Projects/glaggle-bog/out/movie.png"
+movie_writer/fps=30
+
 [file_customization]
 
 folder_colors={
+"res://asset/": "green",
 "res://common/": "gray",
 "res://micro/": "red",
 "res://stage/": "orange",
