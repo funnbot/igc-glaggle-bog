@@ -18,7 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not active:
 		return;
-	timer -= 0.01;
+	timer -= delta;
 	update_timer.emit(timer);
 	if timer <= 0.0:
 		complete.emit(false);
