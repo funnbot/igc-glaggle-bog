@@ -8,9 +8,6 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x0xm2"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0umcb"]
-load_path = "res://.godot/imported/b891001647165f06bfb4a3274b57a288.png-e9a84dcf9219c2067f41ce46403752b3.ctex"
-
 [node name="Node2D" type="Node2D" unique_id=1623321810]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=231111736]
@@ -47,7 +44,6 @@ script = ExtResource("1_qecsx")
 [node name="Thing" type="Sprite2D" parent="Game" unique_id=441679280]
 position = Vector2(581, 298)
 scale = Vector2(0.0738468, 0.0738468)
-texture = SubResource("CompressedTexture2D_0umcb")
 script = ExtResource("5_omje4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Game" unique_id=1611876996]
