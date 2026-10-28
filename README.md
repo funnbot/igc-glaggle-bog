@@ -30,6 +30,11 @@ levels, you should be able to press play from any scene here and it works
 ### stage/<character>/
 assets, dialogue, and main scenes for that character.
 
+## asset/
+Folder for each character
+General assets.
+Working files, export as PSD
+
 # Addons
 - Dialogue Manager
     - Its gdscript, and pretty simply format, should be easy for anyone that has used twine.
