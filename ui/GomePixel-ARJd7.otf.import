@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dmnhmxs71iuub"
-path="res://.godot/imported/GomePixel-ARJd7.otf-1736e27a008110162a56724dcc095b91.fontdata"
+uid="uid://crfx7r02fa8b"
+path="res://.godot/imported/GomePixel-ARJd7.otf-9e47782d2bbf7e7d28e835f52a2d15e9.fontdata"
 
 [deps]
 
-source_file="res://asset/GomePixel-ARJd7.otf"
-dest_files=["res://.godot/imported/GomePixel-ARJd7.otf-1736e27a008110162a56724dcc095b91.fontdata"]
+source_file="res://ui/GomePixel-ARJd7.otf"
+dest_files=["res://.godot/imported/GomePixel-ARJd7.otf-9e47782d2bbf7e7d28e835f52a2d15e9.fontdata"]
 
 [params]
 
@@ -30,7 +30,12 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[]
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
 language_support={}
 script_support={}
 opentype_features={}
