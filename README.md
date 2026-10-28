@@ -31,10 +31,10 @@ levels, you should be able to press play from any scene here and it works
 assets, dialogue, and main scenes for that character.
 
 ## asset/
-Folder for each character
+SubFolder for each artist
 General assets.
 Working files, export as PSD
-Do not edit someone elses file, duplicate and add a number to the end `File.psd`, `File 1.psd`, `File 2.psd`
+Do not edit someone elses file, duplicate and edit in your own folder.
 
 # Addons
 - Dialogue Manager
