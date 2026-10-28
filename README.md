@@ -7,7 +7,7 @@ everything related to the microgames
 The timer, basic logic, and possibly a background UI.
 This will load microgames.
 
-### micro/<game>/
+### micro/game/
 Need a standard interface.
 in:
 - on start
@@ -27,13 +27,14 @@ levels, you should be able to press play from any scene here and it works
 - map screen
 - selected character
 
-### stage/<character>/
+### stage/character/
 assets, dialogue, and main scenes for that character.
 
 ## asset/
 Folder for each character
 General assets.
 Working files, export as PSD
+Do not edit someone elses file, duplicate and add a number to the end `File.psd`, `File 1.psd`, `File 2.psd`
 
 # Addons
 - Dialogue Manager
