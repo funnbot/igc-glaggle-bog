@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://cowb1u30efo1t"]
 
-[ext_resource type="FontFile" path="res://asset/GomePixel-ARJd7.otf" id="1_vos2p"]
+[ext_resource type="FontFile" uid="uid://crfx7r02fa8b" path="res://ui/GomePixel-ARJd7.otf" id="1_vos2p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xxrg"]
 content_margin_left = 5.0
