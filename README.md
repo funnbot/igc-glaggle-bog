@@ -21,8 +21,7 @@ in:
 - on pause?
 - on timer run out
 out:
-- success
-- fail
+- complete(success or fail)
 
 ## ui/
 all other UI elements, menus, dialogue

@@ -1,29 +1,16 @@
 [gd_scene format=3 uid="uid://co03w2isympbo"]
 
 [ext_resource type="Theme" uid="uid://cowb1u30efo1t" path="res://ui/default_theme.tres" id="1_63xwn"]
-[ext_resource type="Script" uid="uid://r7pnps0behei" path="res://stage/micro_container/timer.gd" id="2_yr23y"]
-[ext_resource type="PackedScene" uid="uid://dmpvfpntpuefx" path="res://micro/press_a_game/press_a_game.tscn" id="3_yr23y"]
+[ext_resource type="Script" uid="uid://sh24ro0pplf8" path="res://stage/micro_container/micro_container.gd" id="1_i8k2q"]
+[ext_resource type="PackedScene" uid="uid://000xssueodoa" path="res://ui/countdown_timer/countdown_timer.tscn" id="2_mtn6r"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x0xm2"]
-
-[node name="Base" type="Node2D" unique_id=1623321810]
+[node name="MicroContainer" type="Node2D" unique_id=1623321810]
+script = ExtResource("1_i8k2q")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=231111736]
 layer = 2
 
-[node name="Timer" type="PanelContainer" parent="HUD" unique_id=385965835]
-offset_right = 450.0
-offset_bottom = 47.0
-theme = ExtResource("1_63xwn")
-script = ExtResource("2_yr23y")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/Timer" unique_id=295555658]
-custom_minimum_size = Vector2(100, 10)
-layout_mode = 2
-mouse_filter = 2
-value = 45.0
-nine_patch_stretch = true
-texture_progress = SubResource("PlaceholderTexture2D_x0xm2")
+[node name="Timer" parent="HUD" unique_id=49258557 instance=ExtResource("2_mtn6r")]
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1434973736]
 layer = -1
@@ -35,7 +22,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_63xwn")
-
-[node name="Game" parent="." unique_id=1406460649 instance=ExtResource("3_yr23y")]
-
-[connection signal="update_timer" from="Game" to="HUD/Timer" method="update_timer"]

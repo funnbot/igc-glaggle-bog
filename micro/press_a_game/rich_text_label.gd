@@ -10,8 +10,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_complete(win: bool) -> void:
-	if win:
+func _on_complete(success: bool) -> void:
+	if success:
 		self.text = "You Win";
 	else:
 		self.text = "You Lose";

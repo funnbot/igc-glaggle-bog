@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://ck6nmlodfwnt6"]
 
+[ext_resource type="Script" uid="uid://onqcdca4ao7r" path="res://stage/main.gd" id="1_l47dc"]
 [ext_resource type="PackedScene" uid="uid://co03w2isympbo" path="res://stage/micro_container/micro_container.tscn" id="1_xc24n"]
 
 [node name="Main" type="Node2D" unique_id=590574873]
+script = ExtResource("1_l47dc")
 
-[node name="Base" parent="." unique_id=1623321810 instance=ExtResource("1_xc24n")]
+[node name="MicroContainer" parent="." unique_id=1623321810 instance=ExtResource("1_xc24n")]
 position = Vector2(1004, 917)

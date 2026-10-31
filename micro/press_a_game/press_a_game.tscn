@@ -1,17 +1,12 @@
 [gd_scene format=3 uid="uid://dmpvfpntpuefx"]
 
-[ext_resource type="Script" uid="uid://sh24ro0pplf8" path="res://stage/micro_container/micro_container.gd" id="1_mfiqp"]
 [ext_resource type="Script" uid="uid://binl4cojbs3r2" path="res://micro/press_a_game/press_a_game.gd" id="2_bcnlw"]
 [ext_resource type="Theme" uid="uid://cowb1u30efo1t" path="res://ui/default_theme.tres" id="3_exy1h"]
 [ext_resource type="Script" uid="uid://dsu0ll04plx10" path="res://micro/press_a_game/rich_text_label.gd" id="4_j4xdc"]
 
-[node name="Game" type="Node2D" unique_id=1406460649]
-script = ExtResource("1_mfiqp")
-
-[node name="Thing" type="Sprite2D" parent="." unique_id=1458611994]
-position = Vector2(581, 298)
-scale = Vector2(0.0738468, 0.0738468)
+[node name="PressAGame" type="Node2D" unique_id=1285595604]
 script = ExtResource("2_bcnlw")
+metadata/_custom_type_script = "uid://c7x60jxdaeuw1"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1910057479]
 
@@ -34,6 +29,3 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 script = ExtResource("4_j4xdc")
-
-[connection signal="complete" from="." to="CanvasLayer/RichTextLabel" method="_on_complete"]
-[connection signal="lose" from="." to="Thing" method="_on_trigger"]

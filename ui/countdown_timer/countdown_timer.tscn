@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://000xssueodoa"]
+
+[ext_resource type="Theme" uid="uid://cowb1u30efo1t" path="res://ui/default_theme.tres" id="1_2c530"]
+[ext_resource type="Script" uid="uid://r7pnps0behei" path="res://ui/countdown_timer/countdown_timer.gd" id="2_yt772"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x0xm2"]
+
+[node name="Timer" type="PanelContainer" unique_id=49258557]
+offset_right = 450.0
+offset_bottom = 47.0
+theme = ExtResource("1_2c530")
+script = ExtResource("2_yt772")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1286652107]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+mouse_filter = 2
+value = 45.0
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_x0xm2")
