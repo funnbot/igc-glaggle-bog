@@ -1,3 +1,4 @@
+class_name MicroContainer
 extends Node2D
 
 @export var initial_time_sec := 1.0
@@ -49,6 +50,7 @@ func load_micro_by_path(level_path: StringName) -> Error:
 
 
 func _on_complete(success: bool) -> void:
+	# load next microgame, check if out of lives, change timer.
 	pass
 
 
