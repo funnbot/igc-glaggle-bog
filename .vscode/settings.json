@@ -16,5 +16,8 @@
     },
     "editor.rulers": [
         80
-    ]
+    ],
+    "[gdscript]": {
+        "editor.defaultFormatter": "DoHe.godot-format"
+    }
 }
