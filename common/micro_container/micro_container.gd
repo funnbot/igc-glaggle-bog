@@ -57,6 +57,6 @@ func _on_complete(success: bool) -> void:
 func _start() -> void:
 	if active_micro != null:
 		active_micro.start()
-		_timer_bar.reset()
+		_timer_bar.reset_timer()
 		_initial_timer = initial_time_sec
 		_timer = _initial_timer
