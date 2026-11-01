@@ -1,0 +1,20 @@
+{
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "*": "$(capture).import, $(capture).uid"
+    },
+    "files.readonlyInclude": {
+        "**/*.{godot,uid,import,tres,res,tscn}": true,
+        "**/nuget/**": true,
+        "addons/**/*": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.godot/**": true
+    },
+    "editor.rulers": [
+        80
+    ]
+}
