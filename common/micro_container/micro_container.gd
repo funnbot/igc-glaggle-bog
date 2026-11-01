@@ -8,7 +8,8 @@ var active_micro: MicroGame = null
 var _initial_timer := initial_time_sec
 var _timer := 0.0
 
-@onready var _timer_bar := $"HUD/Timer"
+signal reset_timer()
+signal update_timer(value: float)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,7 +17,6 @@ func _ready() -> void:
 	# TEMP
 	await get_tree().create_timer(2.0).timeout
 	_start()
-	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,16 +25,14 @@ func _process(delta: float) -> void:
 		return
 	# 0 - 1
 	var scaled_timer := _timer / _initial_timer
-	_timer_bar.update_timer(scaled_timer)
+	update_timer.emit(scaled_timer)
 	_timer -= delta
 
 
 # removes an existing loaded microgame scene
 # instantiate the scene at path, add as child
 func load_micro_by_path(level_path: StringName) -> Error:
-	if active_micro != null:
-		remove_child(active_micro)
-		active_micro.queue_free()
+	_unload_micro()
 	var micro_scene: PackedScene = load(level_path)
 	if micro_scene is not PackedScene:
 		push_error("Expected PackedScene, got: ", micro_scene)
@@ -49,14 +47,29 @@ func load_micro_by_path(level_path: StringName) -> Error:
 	return OK
 
 
+func _unload_micro() -> void:
+	if active_micro == null:
+		return
+	active_micro.complete.disconnect(_on_complete)
+	remove_child(active_micro)
+	active_micro.queue_free()
+
+
+# timer ran out before any signal from game
+func _timeout() -> void:
+	pass
+
+
 func _on_complete(success: bool) -> void:
 	# load next microgame, check if out of lives, change timer.
+	
 	pass
 
 
 func _start() -> void:
 	if active_micro != null:
-		active_micro.start()
-		_timer_bar.reset_timer()
 		_initial_timer = initial_time_sec
 		_timer = _initial_timer
+		reset_timer.emit()
+
+		active_micro.start()

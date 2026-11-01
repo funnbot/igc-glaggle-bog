@@ -6,12 +6,9 @@ extends Node2D
 
 # Signal must be emitted to continue at all.
 # Is the result of a microgame always a boolean?
+@warning_ignore("unused_signal")
 signal complete(success: bool)
 
 
 # Called after _ready when the microgame starts, the timer starts counting down
-@abstract func start() -> void ;
-
-
-# Called when the timer runs out for this game, usually indicating they failed.
-@abstract func timeout() -> void ;
+@abstract func start() -> void

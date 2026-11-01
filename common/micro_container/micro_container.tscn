@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://co03w2isympbo"]
 
 [ext_resource type="Theme" uid="uid://cowb1u30efo1t" path="res://ui/default_theme.tres" id="1_63xwn"]
-[ext_resource type="Script" uid="uid://sh24ro0pplf8" path="res://stage/micro_container/micro_container.gd" id="1_i8k2q"]
+[ext_resource type="Script" uid="uid://sh24ro0pplf8" path="res://common/micro_container/micro_container.gd" id="1_i8k2q"]
 [ext_resource type="PackedScene" uid="uid://000xssueodoa" path="res://ui/countdown_timer/countdown_timer.tscn" id="2_mtn6r"]
 
 [node name="MicroContainer" type="Node2D" unique_id=1623321810]
@@ -22,3 +22,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_63xwn")
+
+[connection signal="reset_timer" from="." to="HUD/Timer" method="_on_reset_timer"]
+[connection signal="update_timer" from="." to="HUD/Timer" method="_on_update_timer"]

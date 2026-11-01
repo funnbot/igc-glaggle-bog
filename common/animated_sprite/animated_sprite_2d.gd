@@ -15,10 +15,6 @@ func _ready() -> void:
 
 
 func _on_trigger() -> void:
-	_trigger()
-
-
-func _trigger() -> void:
 	_total_frames = self.hframes * self.vframes
 	_frame_length = animation_length / float(_total_frames)
 	timer = _frame_length
