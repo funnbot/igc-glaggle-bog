@@ -2,10 +2,15 @@
 
 [ext_resource type="Theme" uid="uid://cowb1u30efo1t" path="res://ui/default_theme.tres" id="1_63xwn"]
 [ext_resource type="Script" uid="uid://sh24ro0pplf8" path="res://common/micro_container/micro_container.gd" id="1_i8k2q"]
+[ext_resource type="Script" uid="uid://f0jgk0xesomw" path="res://common/micro_container/ticking_timer.gd" id="2_fvrmb"]
 [ext_resource type="PackedScene" uid="uid://000xssueodoa" path="res://ui/countdown_timer/countdown_timer.tscn" id="2_mtn6r"]
 
 [node name="MicroContainer" type="Node2D" unique_id=1623321810]
 script = ExtResource("1_i8k2q")
+
+[node name="Timer" type="Timer" parent="." unique_id=1355457129]
+one_shot = true
+script = ExtResource("2_fvrmb")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=231111736]
 layer = 2
@@ -23,5 +28,5 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_63xwn")
 
-[connection signal="reset_timer" from="." to="HUD/Timer" method="_on_reset_timer"]
-[connection signal="update_timer" from="." to="HUD/Timer" method="_on_update_timer"]
+[connection signal="started" from="Timer" to="HUD/Timer" method="_on_timer_start"]
+[connection signal="tick" from="Timer" to="HUD/Timer" method="_on_timer_tick"]

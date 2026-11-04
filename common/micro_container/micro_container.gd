@@ -1,36 +1,22 @@
 class_name MicroContainer
 extends Node2D
 
-@export var initial_time_sec := 1.0
+@export var micro_time_sec := 1.0
 
-var active_micro: MicroGame = null
-# current timers starting value
-var _initial_timer := initial_time_sec
-var _timer := 0.0
-
-signal reset_timer()
-signal update_timer(value: float)
+@onready var _timer: TickingTimer = $"Timer"
+var _active_micro: MicroGame = null
+var _is_micro_running: bool = false
+var _micro_result: MicroGame.Result = MicroGame.Result.SUCCESS
+signal _micro_complete()
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# TEMP
-	await get_tree().create_timer(2.0).timeout
-	_start()
+	_timer.timeout.connect(_on_complete.bind(MicroGame.Result.TIMEOUT))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if _timer <= 0:
-		return
-	# 0 - 1
-	var scaled_timer := _timer / _initial_timer
-	update_timer.emit(scaled_timer)
-	_timer -= delta
-
-
-# removes an existing loaded microgame scene
-# instantiate the scene at path, add as child
+## removes an existing loaded microgame scene
+## instantiate the scene at path, add as child
+## the microgame has process mode disabled, until it is started.
 func load_micro_by_path(level_path: StringName) -> Error:
 	_unload_micro()
 	var micro_scene: PackedScene = load(level_path)
@@ -41,35 +27,44 @@ func load_micro_by_path(level_path: StringName) -> Error:
 	if micro is not MicroGame:
 		push_error("Expected MicroGame, got: ", micro)
 		return ERR_INVALID_PARAMETER
+	micro.process_mode = Node.PROCESS_MODE_DISABLED
+	print_debug("add child ", micro)
 	add_child(micro)
-	active_micro = micro
-	active_micro.complete.connect(_on_complete)
+	_active_micro = micro
 	return OK
 
 
-func _unload_micro() -> void:
-	if active_micro == null:
+func run_micro() -> void:
+	if _active_micro == null:
 		return
-	active_micro.complete.disconnect(_on_complete)
-	remove_child(active_micro)
-	active_micro.queue_free()
+	_timer.start_with_signal(micro_time_sec)
+	# TODO: show text overlay like "Catch!"
+	_active_micro.process_mode = Node.PROCESS_MODE_PAUSABLE
+	_active_micro.complete.connect(_on_complete, CONNECT_ONE_SHOT)
+	_is_micro_running = true
+	print_debug("start micro ", _active_micro)
+	_active_micro.start()
 
 
-# timer ran out before any signal from game
-func _timeout() -> void:
-	pass
+func wait_complete() -> void:
+	# if we want to always wait for the timer to run out fully...
+	await _timer.timeout
+	_unload_micro()
 
 
-func _on_complete(success: bool) -> void:
-	# load next microgame, check if out of lives, change timer.
-	
-	pass
+func _unload_micro() -> void:
+	if _active_micro == null:
+		return
+	print_debug("unloading ", _active_micro)
+	remove_child(_active_micro)
+	_active_micro.queue_free()
 
 
-func _start() -> void:
-	if active_micro != null:
-		_initial_timer = initial_time_sec
-		_timer = _initial_timer
-		reset_timer.emit()
-
-		active_micro.start()
+## called either by the microgame with success or failure,
+## or additionally bound to the timer, and will be called with timeout
+func _on_complete(result: MicroGame.Result) -> void:
+	if _is_micro_running:
+		# timeout after a result from the microgame, just used to wait for
+		_is_micro_running = false
+		_micro_result = result
+	_micro_complete.emit()
