@@ -1,8 +1,9 @@
 extends RichTextLabel
 
 
-func _on_complete(success: bool) -> void:
-	if success:
-		self.text = "You Win"
-	else:
-		self.text = "You Lose"
+func _on_complete(result: MicroGame.Result) -> void:
+	match result:
+		MicroGame.Result.SUCCESS:
+			self.text = "You Win"
+		MicroGame.Result.FAILURE:
+			self.text = "You Lose"
