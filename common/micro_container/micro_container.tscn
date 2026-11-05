@@ -5,6 +5,14 @@
 [ext_resource type="Script" uid="uid://f0jgk0xesomw" path="res://common/micro_container/ticking_timer.gd" id="2_fvrmb"]
 [ext_resource type="PackedScene" uid="uid://000xssueodoa" path="res://ui/countdown_timer/countdown_timer.tscn" id="2_mtn6r"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vos2p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 150
+border_width_top = 150
+border_width_right = 150
+border_width_bottom = 150
+border_blend = true
+
 [node name="MicroContainer" type="Node2D" unique_id=1623321810]
 script = ExtResource("1_i8k2q")
 
@@ -15,7 +23,25 @@ script = ExtResource("2_fvrmb")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=231111736]
 layer = 2
 
-[node name="Timer" parent="HUD" unique_id=49258557 instance=ExtResource("2_mtn6r")]
+[node name="Control" type="Control" parent="HUD" unique_id=762176114]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="HUD/Control" unique_id=1757838015]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vos2p")
+
+[node name="Timer" parent="HUD/Control" unique_id=49258557 instance=ExtResource("2_mtn6r")]
+layout_mode = 0
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1434973736]
 layer = -1
@@ -30,5 +56,5 @@ theme = ExtResource("1_63xwn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=605115871]
 
-[connection signal="started" from="Timer" to="HUD/Timer" method="_on_timer_start"]
-[connection signal="tick" from="Timer" to="HUD/Timer" method="_on_timer_tick"]
+[connection signal="started" from="Timer" to="HUD/Control/Timer" method="_on_timer_start"]
+[connection signal="tick" from="Timer" to="HUD/Control/Timer" method="_on_timer_tick"]

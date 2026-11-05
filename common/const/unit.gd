@@ -2,4 +2,4 @@
 class_name Unit
 extends Object
 
-static var ONE: int = 100
+const ONE: int = 100
