@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bgtxu8rmo3e6c"]
+
+[ext_resource type="Script" uid="uid://nw5l1uxfrjk4" path="res://micro/balance_ball/balance_ball.gd" id="1_re80o"]
+[ext_resource type="Texture2D" uid="uid://ctvrnqacvi463" path="res://ui/placeholder_circle.tres" id="2_v7y1t"]
+[ext_resource type="Texture2D" uid="uid://bf5lv2fm7vjvw" path="res://ui/placeholder_9patch.tres" id="2_v34wh"]
+
+[node name="BalanceBall" type="Node2D" unique_id=2057166437]
+script = ExtResource("1_re80o")
+
+[node name="Ball" type="Sprite2D" parent="." unique_id=1979549470]
+texture = ExtResource("2_v7y1t")
+
+[node name="Character" type="Node2D" parent="." unique_id=934972535]
+position = Vector2(0, -52)
+
+[node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=16693686]
+position = Vector2(0, -248)
+scale = Vector2(0.5, 4)
+texture = ExtResource("2_v34wh")

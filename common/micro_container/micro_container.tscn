@@ -28,5 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_63xwn")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=605115871]
+
 [connection signal="started" from="Timer" to="HUD/Timer" method="_on_timer_start"]
 [connection signal="tick" from="Timer" to="HUD/Timer" method="_on_timer_tick"]
