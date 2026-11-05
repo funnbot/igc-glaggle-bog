@@ -14,6 +14,8 @@ config/name="Glaggle Bog"
 run/main_scene="uid://ck6nmlodfwnt6"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+[autoload]
+ImGui="*uid://c1c51f1ndgcxg"
 
 [debug]
 
