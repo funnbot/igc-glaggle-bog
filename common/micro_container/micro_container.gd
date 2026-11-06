@@ -1,7 +1,7 @@
 class_name MicroContainer
 extends Node2D
 
-@export var micro_time_sec := 100.0
+@export var micro_time_sec := 3.0
 @onready var _timer: TickingTimer = $"Timer"
 var _active_micro: MicroGame = null
 var _is_micro_running: bool = false
@@ -63,7 +63,10 @@ func _unload_micro() -> void:
 ## or additionally bound to the timer, and will be called with timeout
 ## could be called twice at end of microgame
 func _on_complete(result: MicroGame.Result) -> void:
+	print_debug("complete ", result, " ", self)
 	if _is_micro_running:
+		if result == MicroGame.Result.TIMEOUT:
+			result = MicroGame.Result.SUCCESS if _active_micro.SURVIVE else MicroGame.Result.FAILURE
 		# timeout after a result from the microgame, just used to wait for
 		_is_micro_running = false
 		_micro_result = result
