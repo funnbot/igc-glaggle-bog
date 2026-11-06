@@ -7,8 +7,12 @@ extends Node2D
 enum Result {
 	SUCCESS,
 	FAILURE,
+	# TODO: when is timeout considered a fail, versus success (survived)
 	TIMEOUT,
 }
+
+## If set to true, then a result of TIMEOUT is considered a success
+var SURVIVE: bool = false
 
 ## Signal must be emitted to continue at all.
 ## TODO: Is the result of a microgame always a boolean?

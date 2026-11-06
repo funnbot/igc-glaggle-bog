@@ -8,12 +8,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n54jg"]
 size = Vector2(50, 400)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n54jg"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_n54jg"]
 radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x0xm2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n54jg"]
 
 [node name="BalanceBall" type="Node2D" unique_id=2057166437]
 script = ExtResource("1_re80o")
@@ -30,8 +30,6 @@ position = Vector2(0, -100)
 disable_mode = 1
 collision_layer = 0
 collision_mask = 0
-linear_damp = 0.5
-angular_damp = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character" unique_id=1654066719]
 position = Vector2(0, -300)
@@ -41,15 +39,6 @@ shape = SubResource("RectangleShape2D_n54jg")
 position = Vector2(0, -300)
 scale = Vector2(0.5, 4)
 texture = ExtResource("2_v34wh")
-
-[node name="Floor" type="StaticBody2D" parent="." unique_id=712347713]
-collision_mask = 2
-physics_material_override = ExtResource("2_wvk6u")
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=762814012]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1585870746]
-shape = SubResource("WorldBoundaryShape2D_n54jg")
 
 [node name="Ball" type="RigidBody2D" parent="." unique_id=881877629]
 position = Vector2(0, -100)
@@ -64,6 +53,7 @@ shape = SubResource("CircleShape2D_n54jg")
 texture = ExtResource("2_v7y1t")
 
 [node name="BallPivot" type="StaticBody2D" parent="." unique_id=576406796]
+position = Vector2(0, 200)
 disable_mode = 1
 collision_layer = 0
 collision_mask = 0
@@ -71,3 +61,12 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallPivot" unique_id=538708612]
 shape = SubResource("CircleShape2D_x0xm2")
 disabled = true
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=712347713]
+collision_mask = 2
+physics_material_override = ExtResource("2_wvk6u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=762814012]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1585870746]
+shape = SubResource("WorldBoundaryShape2D_n54jg")
