@@ -1,8 +1,11 @@
 class_name MicroContainer
 extends Node2D
 
+signal action_text(str: String)
+
 @export var micro_time_sec := 3.0
 @onready var _timer: TickingTimer = $"Timer"
+
 var _active_micro: MicroGame = null
 var _is_micro_running: bool = false
 var _micro_result: MicroGame.Result = MicroGame.Result.SUCCESS
@@ -36,6 +39,9 @@ func load_micro_by_path(level_path: StringName) -> Error:
 func run_micro() -> void:
 	if _active_micro == null:
 		return
+	action_text.emit(_active_micro.ACTION)
+	await get_tree().create_timer(1.0).timeout
+	action_text.emit("")
 	_timer.start_with_signal(micro_time_sec)
 	# TODO: show text overlay like "Catch!"
 	_active_micro.process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -43,10 +49,6 @@ func run_micro() -> void:
 	_is_micro_running = true
 	print_debug("start micro ", _active_micro)
 	_active_micro.start()
-
-
-func wait_complete() -> void:
-	# if we want to always wait for the timer to run out fully...
 	await _timer.timeout
 	_unload_micro()
 

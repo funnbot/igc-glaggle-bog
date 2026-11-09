@@ -12,7 +12,9 @@ enum Result {
 }
 
 ## If set to true, then a result of TIMEOUT is considered a success
-var SURVIVE: bool = false
+@export var SURVIVE: bool = false
+
+@export var ACTION: String = "Catch!"
 
 ## Signal must be emitted to continue at all.
 ## TODO: Is the result of a microgame always a boolean?

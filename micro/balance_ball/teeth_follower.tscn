@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dfglylpq454td"]
+
+[ext_resource type="Texture2D" uid="uid://ccg4ht5vr82ny" path="res://micro/balance_ball/ToothVarientOne.png" id="1_mrrok"]
+
+[node name="PathFollow2D" type="PathFollow2D" unique_id=237783269]
+rotation = -0.7990958
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=807581919]
+texture = ExtResource("1_mrrok")

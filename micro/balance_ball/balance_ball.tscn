@@ -1,15 +1,39 @@
 [gd_scene format=3 uid="uid://bgtxu8rmo3e6c"]
 
 [ext_resource type="Script" uid="uid://nw5l1uxfrjk4" path="res://micro/balance_ball/balance_ball.gd" id="1_re80o"]
-[ext_resource type="Texture2D" uid="uid://ctvrnqacvi463" path="res://ui/placeholder_circle.tres" id="2_v7y1t"]
-[ext_resource type="Texture2D" uid="uid://bf5lv2fm7vjvw" path="res://ui/placeholder_9patch.tres" id="2_v34wh"]
+[ext_resource type="Texture2D" uid="uid://c4cxtp11jycky" path="res://micro/balance_ball/Juggling_Animation-1.png" id="2_oqxdu"]
 [ext_resource type="PhysicsMaterial" uid="uid://buvl7ihjchn2w" path="res://micro/balance_ball/high_friction_physics_material.tres" id="2_wvk6u"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n54jg"]
-size = Vector2(50, 400)
+[ext_resource type="Texture2D" uid="uid://bibiw3405qrru" path="res://micro/balance_ball/Juggling_Animation-2.png" id="3_oqxdu"]
+[ext_resource type="Texture2D" uid="uid://cft3x70pwlw81" path="res://micro/balance_ball/ball.png" id="5_q8yd3"]
+[ext_resource type="Script" uid="uid://xoof8rrxhmif" path="res://micro/balance_ball/teeth_path.gd" id="6_hy7w5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n54jg"]
-radius = 100.0
+radius = 82.45
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n54jg"]
+size = Vector2(112.82, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n54jg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oqxdu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oqxdu")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tko0"]
+
+[sub_resource type="Curve2D" id="Curve2D_oqxdu"]
+_data = {
+"points": PackedVector2Array(-20.321058, 20.885534, 20.321058, -20.885534, 130, -350, 7.902634, 19.756586, -7.902634, -19.756586, 120, -480, 44.02896, 0, -44.02896, 0, 30, -580, 5.080265, -20.603296, -5.080265, 20.603296, -70, -490, -11.289477, -9.596056, 11.289477, 9.596056, -80, -340, -17.498688, 18.345402, 17.498688, -18.345402, 130, -350)
+}
+point_count = 6
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x0xm2"]
 
@@ -17,31 +41,17 @@ radius = 100.0
 
 [node name="BalanceBall" type="Node2D" unique_id=2057166437]
 script = ExtResource("1_re80o")
+SURVIVE = true
+ACTION = "Balance!"
 
 [node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=1035428947]
-position = Vector2(0, -200)
 node_a = NodePath("../BallPivot")
 node_b = NodePath("../Character")
-bias = 0.9
+bias = 0.251
 disable_collision = false
 
-[node name="Character" type="RigidBody2D" parent="." unique_id=1594099054]
-position = Vector2(0, -100)
-disable_mode = 1
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" unique_id=1654066719]
-position = Vector2(0, -300)
-shape = SubResource("RectangleShape2D_n54jg")
-
-[node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=16693686]
-position = Vector2(0, -300)
-scale = Vector2(0.5, 4)
-texture = ExtResource("2_v34wh")
-
 [node name="Ball" type="RigidBody2D" parent="." unique_id=881877629]
-position = Vector2(0, -100)
+position = Vector2(0, 70)
 disable_mode = 1
 collision_layer = 2
 physics_material_override = ExtResource("2_wvk6u")
@@ -50,10 +60,35 @@ physics_material_override = ExtResource("2_wvk6u")
 shape = SubResource("CircleShape2D_n54jg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1979549470]
-texture = ExtResource("2_v7y1t")
+position = Vector2(0, 10)
+texture = ExtResource("5_q8yd3")
+
+[node name="Character" type="RigidBody2D" parent="." unique_id=1594099054]
+position = Vector2(-10, 130)
+disable_mode = 1
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" unique_id=1654066719]
+position = Vector2(0, -300)
+shape = SubResource("RectangleShape2D_n54jg")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Character" unique_id=400390567]
+position = Vector2(0, -290)
+sprite_frames = SubResource("SpriteFrames_n54jg")
+autoplay = "default"
+frame_progress = 0.9949356
+
+[node name="Teeth" type="AnimatedSprite2D" parent="Character" unique_id=475703010]
+sprite_frames = SubResource("SpriteFrames_7tko0")
+
+[node name="Path2D" type="Path2D" parent="Character" unique_id=1800043873]
+position = Vector2(-20, 0)
+curve = SubResource("Curve2D_oqxdu")
+script = ExtResource("6_hy7w5")
 
 [node name="BallPivot" type="StaticBody2D" parent="." unique_id=576406796]
-position = Vector2(0, 200)
+position = Vector2(0, 400)
 disable_mode = 1
 collision_layer = 0
 collision_mask = 0
@@ -63,6 +98,7 @@ shape = SubResource("CircleShape2D_x0xm2")
 disabled = true
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=712347713]
+position = Vector2(0, 160)
 collision_mask = 2
 physics_material_override = ExtResource("2_wvk6u")
 

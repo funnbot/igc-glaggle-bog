@@ -19,5 +19,6 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
+default_font = ExtResource("1_vos2p")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_4xxrg")
 RichTextLabel/fonts/normal_font = ExtResource("1_vos2p")

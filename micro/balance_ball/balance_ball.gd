@@ -9,7 +9,7 @@ extends MicroGame
 
 
 func start() -> void:
-	self.SURVIVE = true
+	pass
 
 
 func _physics_process(_delta: float) -> void:

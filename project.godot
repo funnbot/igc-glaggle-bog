@@ -52,6 +52,10 @@ folder_colors={
 "res://ui/": "blue"
 }
 
+[gui]
+
+theme/custom="uid://cowb1u30efo1t"
+
 [input]
 
 move_left={
