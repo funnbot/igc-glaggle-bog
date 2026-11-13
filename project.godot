@@ -14,8 +14,11 @@ config/name="Glaggle Bog"
 run/main_scene="uid://ck6nmlodfwnt6"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
 [autoload]
+
 ImGui="*uid://c1c51f1ndgcxg"
+RunMicroAutoload="uid://yyxwe8gomvll"
 
 [debug]
 
@@ -35,12 +38,12 @@ window/stretch/aspect="expand"
 
 [editor]
 
-movie_writer/movie_file="/Users/db/Projects/glaggle-bog/out/movie.png"
+movie_writer/movie_file="/Users/db/Projects/glaggle-bog/movie.ogv"
 movie_writer/fps=30
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/dear-imgui-godot/plugin.cfg")
 
 [file_customization]
 

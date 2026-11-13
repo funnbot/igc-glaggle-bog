@@ -4,19 +4,62 @@
 [ext_resource type="Script" uid="uid://sh24ro0pplf8" path="res://common/micro_container/micro_container.gd" id="1_i8k2q"]
 [ext_resource type="Script" uid="uid://f0jgk0xesomw" path="res://common/micro_container/ticking_timer.gd" id="2_fvrmb"]
 [ext_resource type="PackedScene" uid="uid://000xssueodoa" path="res://ui/countdown_timer/countdown_timer.tscn" id="2_mtn6r"]
+[ext_resource type="Script" uid="uid://cvb6w6wvqbi12" path="res://common/micro_container/micro_container_ui.gd" id="3_sqxah"]
 [ext_resource type="Script" uid="uid://c4elxldod2akp" path="res://common/micro_container/action_text.gd" id="4_out8p"]
+[ext_resource type="Shader" uid="uid://bddche7ckbetw" path="res://common/micro_container/transition_reveal.gdshader" id="5_430f7"]
+[ext_resource type="Script" uid="uid://8dq4pufs1r6d" path="res://common/micro_container/transition.gd" id="6_cu0ph"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vos2p"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cu0ph"]
+bg_color = Color(0.9777681, 0.30576238, 0.6089929, 1)
 border_width_left = 26
 border_width_top = 26
 border_width_right = 26
 border_width_bottom = 26
 border_color = Color(0.42745098, 0.18039216, 0.6862745, 1)
-border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vos2p"]
+bg_color = Color(0.6874411, 0.5968253, 0.2461302, 1)
+border_width_left = 26
+border_width_top = 26
+border_width_right = 26
+border_width_bottom = 26
+border_color = Color(0.42745098, 0.18039216, 0.6862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfth2"]
+bg_color = Color(0.6388083, 0.08970181, 0.07862484, 1)
+border_width_left = 26
+border_width_top = 26
+border_width_right = 26
+border_width_bottom = 26
+border_color = Color(0.42745098, 0.18039216, 0.6862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx2qy"]
+bg_color = Color(0.20732367, 0.7117864, 0.3014028, 1)
+border_width_left = 26
+border_width_top = 26
+border_width_right = 26
+border_width_bottom = 26
+border_color = Color(0.42745098, 0.18039216, 0.6862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tko0"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8892123, 0.8134355, 1.1551381e-06, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2h17"]
+shader = ExtResource("5_430f7")
+shader_parameter/progress = 0.6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8nqq"]
+bg_color = Color(0.73474663, 0.47158158, 0.8709042, 1)
 
 [node name="MicroContainer" type="Node2D" unique_id=1623321810]
 script = ExtResource("1_i8k2q")
+character_name = "Lisa"
+micro_sequence = Array[String](["uid://bgtxu8rmo3e6c"])
 
 [node name="Timer" type="Timer" parent="." unique_id=1355457129]
 one_shot = true
@@ -25,25 +68,63 @@ script = ExtResource("2_fvrmb")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=231111736]
 layer = 2
 
-[node name="Control" type="Control" parent="HUD" unique_id=762176114]
+[node name="Timer" parent="HUD" unique_id=49258557 instance=ExtResource("2_mtn6r")]
+offset_right = 500.0
+offset_bottom = 20.0
+
+[node name="Control" type="Control" parent="HUD" unique_id=2120285552 node_paths=PackedStringArray("_overlay_intro", "_overlay_call", "_transition", "_overlay_success", "_overlay_fail", "_inner_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_sqxah")
+_overlay_intro = NodePath("OverlayIntro")
+_overlay_call = NodePath("OverlayCall")
+_transition = NodePath("Transition")
+_overlay_success = NodePath("OverlaySuccess")
+_overlay_fail = NodePath("OverlayFail")
+_inner_panel = NodePath("InnerPanel")
 
-[node name="Panel" type="Panel" parent="HUD/Control" unique_id=1757838015]
+[node name="OverlayIntro" type="Panel" parent="HUD/Control" unique_id=1757838015]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vos2p")
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cu0ph")
 
-[node name="Timer" parent="HUD/Control" unique_id=49258557 instance=ExtResource("2_mtn6r")]
-layout_mode = 0
+[node name="Label" type="Label" parent="HUD/Control/OverlayIntro" unique_id=134624299]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = -50.0
+offset_right = 305.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Introduction"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OverlayCall" type="Panel" parent="HUD/Control" unique_id=1764015639]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vos2p")
 
 [node name="ActionText" type="Label" parent="HUD/Control" unique_id=1987901932]
 layout_mode = 1
@@ -52,16 +133,102 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -24.5
-offset_top = -11.5
-offset_right = 24.5
-offset_bottom = 11.5
+offset_left = -0.5
+offset_top = -50.0
+offset_right = 0.5
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, -100)
 theme_override_font_sizes/font_size = 100
 script = ExtResource("4_out8p")
+
+[node name="OverlayFail" type="Panel" parent="HUD/Control" unique_id=101749069]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kfth2")
+
+[node name="Label" type="Label" parent="HUD/Control/OverlayFail" unique_id=1805392421]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = -50.0
+offset_right = 305.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Fail"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OverlaySuccess" type="Panel" parent="HUD/Control" unique_id=307555602]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sx2qy")
+
+[node name="Label" type="Label" parent="HUD/Control/OverlaySuccess" unique_id=1112279478]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = -50.0
+offset_right = 305.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Success"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InnerPanel" type="Panel" parent="HUD/Control" unique_id=814285153]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -450.0
+offset_right = 800.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7tko0")
+
+[node name="Transition" type="Panel" parent="HUD/Control" unique_id=901030414]
+material = SubResource("ShaderMaterial_o2h17")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e8nqq")
+script = ExtResource("6_cu0ph")
+time_sec = 0.5
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1434973736]
 layer = -1
@@ -77,5 +244,6 @@ theme = ExtResource("1_63xwn")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=605115871]
 
 [connection signal="action_text" from="." to="HUD/Control/ActionText" method="_on_action_text"]
-[connection signal="started" from="Timer" to="HUD/Control/Timer" method="_on_timer_start"]
-[connection signal="tick" from="Timer" to="HUD/Control/Timer" method="_on_timer_tick"]
+[connection signal="state_changed" from="." to="HUD/Control" method="_on_state_changed"]
+[connection signal="started" from="Timer" to="HUD/Timer" method="_on_timer_start"]
+[connection signal="tick" from="Timer" to="HUD/Timer" method="_on_timer_tick"]

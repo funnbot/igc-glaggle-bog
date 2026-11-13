@@ -24,4 +24,5 @@ signal complete(result: Result)
 
 ## Called way after _ready when the microgame starts, the timer starts counting down
 ## the microgame has process mode disabled, until it is started.
-@abstract func start() -> void
+func start() -> void:
+	pass

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://shc0guay7ehf"]
+
+[ext_resource type="Script" uid="uid://dbttejelmd45t" path="res://micro/falling_teeth/falling_teeth.gd" id="1_4fg1f"]
+
+[node name="FallingTeeth" type="Node2D" unique_id=240547794]
+script = ExtResource("1_4fg1f")

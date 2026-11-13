@@ -2,14 +2,14 @@ extends MicroGame
 
 @export var rotation_limit_deg: float = 90
 @export var move_speed: float = 500.0
-
+@export var start_bias: float = 10.0
 @onready var _ball: RigidBody2D = $"Ball"
 @onready var _character: RigidBody2D = $"Character"
 @onready var _ball_pivot: StaticBody2D = $"BallPivot"
 
 
 func start() -> void:
-	pass
+	_character.apply_impulse(Vector2(start_bias, 0))
 
 
 func _physics_process(_delta: float) -> void:

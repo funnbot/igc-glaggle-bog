@@ -1,7 +1,21 @@
 class_name MicroContainer
 extends Node2D
 
+enum State {
+	Load,
+	Call,
+	Transition,
+	Start,
+	End,
+	ResultSuccess,
+	ResultFail,
+}
+
+signal state_changed(s: State)
 signal action_text(str: String)
+
+@export var character_name: String
+@export_file("*.tscn", "*.scn") var micro_sequence: Array[String]
 
 @export var micro_time_sec := 3.0
 @onready var _timer: TickingTimer = $"Timer"
@@ -33,23 +47,38 @@ func load_micro_by_path(level_path: StringName) -> Error:
 	print_debug("add child ", micro)
 	add_child(micro)
 	_active_micro = micro
+	state_changed.emit(State.Load)
 	return OK
 
 
 func run_micro() -> void:
 	if _active_micro == null:
 		return
+
+	await get_tree().create_timer(1.0).timeout
+	state_changed.emit(State.Call)
 	action_text.emit(_active_micro.ACTION)
 	await get_tree().create_timer(1.0).timeout
+
+	state_changed.emit(State.Transition)
+	await get_tree().create_timer(1.0).timeout
 	action_text.emit("")
+
+	state_changed.emit(State.Start)
 	_timer.start_with_signal(micro_time_sec)
-	# TODO: show text overlay like "Catch!"
 	_active_micro.process_mode = Node.PROCESS_MODE_PAUSABLE
 	_active_micro.complete.connect(_on_complete, CONNECT_ONE_SHOT)
 	_is_micro_running = true
 	print_debug("start micro ", _active_micro)
+	await get_tree().process_frame
 	_active_micro.start()
+
 	await _timer.timeout
+	if _micro_result == MicroGame.Result.FAILURE:
+		state_changed.emit(State.ResultFail)
+	else:
+		state_changed.emit(State.ResultSuccess)
+
 	_unload_micro()
 
 

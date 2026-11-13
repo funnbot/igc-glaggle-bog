@@ -31,7 +31,7 @@ animations = [{
 
 [sub_resource type="Curve2D" id="Curve2D_oqxdu"]
 _data = {
-"points": PackedVector2Array(-20.321058, 20.885534, 20.321058, -20.885534, 130, -350, 7.902634, 19.756586, -7.902634, -19.756586, 120, -480, 44.02896, 0, -44.02896, 0, 30, -580, 5.080265, -20.603296, -5.080265, 20.603296, -70, -490, -11.289477, -9.596056, 11.289477, 9.596056, -80, -340, -17.498688, 18.345402, 17.498688, -18.345402, 130, -350)
+"points": PackedVector2Array(-20.321058, 20.885534, 20.321058, -20.885534, 130, -350, 7.902634, 19.756586, -7.902634, -19.756586, 120, -480, 44.02896, 0, -44.02896, 0, 20, -580, 10.080265, -31.057842, -10.080265, 31.057842, -80, -490, -11.289477, -9.596056, 11.289477, 9.596056, -80, -340, -17.498688, 18.345402, 17.498688, -18.345402, 130, -350)
 }
 point_count = 6
 
@@ -41,6 +41,8 @@ point_count = 6
 
 [node name="BalanceBall" type="Node2D" unique_id=2057166437]
 script = ExtResource("1_re80o")
+rotation_limit_deg = 60.0
+start_bias = 50.0
 SURVIVE = true
 ACTION = "Balance!"
 
@@ -64,10 +66,11 @@ position = Vector2(0, 10)
 texture = ExtResource("5_q8yd3")
 
 [node name="Character" type="RigidBody2D" parent="." unique_id=1594099054]
-position = Vector2(-10, 130)
+position = Vector2(0, 130)
 disable_mode = 1
 collision_layer = 0
 collision_mask = 0
+gravity_scale = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character" unique_id=1654066719]
 position = Vector2(0, -300)

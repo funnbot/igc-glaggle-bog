@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dv1kscsukm6bj"]
+
+[ext_resource type="Texture2D" uid="uid://b8e56sguwf3a2" path="res://micro/xray_teeth/background.png" id="1_7v0nu"]
+[ext_resource type="Script" uid="uid://c0ann8hopkbe5" path="res://micro/xray_teeth/xray_teeth.gd" id="1_m2dqn"]
+[ext_resource type="Texture2D" uid="uid://dmk7dnkwmeju5" path="res://micro/xray_teeth/circle_blur_mask.png" id="3_ip8m3"]
+[ext_resource type="Texture2D" uid="uid://du6uncnax05m" path="res://micro/xray_teeth/xray.png" id="4_roc82"]
+
+[node name="XrayTeeth" type="Node2D" unique_id=1373264420]
+script = ExtResource("1_m2dqn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1639746453]
+z_index = -1
+texture = ExtResource("1_7v0nu")
+
+[node name="CircleBlurMask" type="Sprite2D" parent="." unique_id=1901468209]
+clip_children = 1
+position = Vector2(-282, -246)
+texture = ExtResource("3_ip8m3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CircleBlurMask" unique_id=524064566]
+position = Vector2(284, 247)
+texture = ExtResource("4_roc82")
